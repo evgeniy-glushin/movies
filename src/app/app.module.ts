@@ -1,18 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { Routes, RouterModule } from '@angular/router'
 
 import { AppComponent } from './app.component';
+import { MoviesComponent } from './movies/movies.component';
+
+let route = [
+  { path: '', component: MoviesComponent }
+]
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MoviesComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(route)
   ],
   providers: [],
   bootstrap: [AppComponent]

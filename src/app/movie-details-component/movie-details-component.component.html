@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-2">
+    <img src="{{movie?.imgUrl}}" class="rounded float-left" alt="{{movie?.title}}">
+  </div>
+  <div >
+    <div>Title: {{movie?.title}}</div>
+    <div>Year: {{movie?.year}}</div>
+    <div>Rating: {{movie?.rating}}</div>
+    <div>Length: {{movie?.length}} min</div>
+    <div>Genres: {{movie?.genres?.join(', ')}}</div>
+    <div>Countries: {{movie?.countries?.join(', ')}}</div>
+    <div>Description: {{movie?.description}}</div>
+  </div>
+</div>

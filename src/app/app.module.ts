@@ -6,15 +6,20 @@ import { Routes, RouterModule } from '@angular/router'
 
 import { AppComponent } from './app.component';
 import { MoviesComponent } from './movies/movies.component';
+import { MovieDetailsComponentComponent } from './movie-details-component/movie-details-component.component';
+import { MovieCardDirective } from './common/movie-card.directive';
 
 let route = [
-  { path: '', component: MoviesComponent }
+  { path: '', component: MoviesComponent },
+  { path: 'movies/:title', component: MovieDetailsComponentComponent }
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
-    MoviesComponent
+    MoviesComponent,
+    MovieDetailsComponentComponent,
+    MovieCardDirective
   ],
   imports: [
     BrowserModule,

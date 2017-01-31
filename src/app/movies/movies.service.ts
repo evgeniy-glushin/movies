@@ -16,6 +16,11 @@ export class MoviesService {
       .catch(this.handleError)
   }
 
+  getByTitle(title: string): Promise<Movie> {
+    return this.getAll()
+      .then(data => data.find(x => x.title == title))
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);

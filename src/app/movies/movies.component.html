@@ -4,7 +4,7 @@
       <img src="{{movie.imgUrl}}" class="rounded float-left" alt="{{movie.title}}">
     </div>
     <div class="row">
-      <a [routerLink]="['/movies', movie.title]">{{movie.title}}</a>
+      <a [routerLink]="['/movies', movie.title]" [myHighlight]="Yellow">{{movie.title}}</a>
       <!--Alternative way how to use navigation
         this.router.navigate(['/product-details', id]);-->
     </div>

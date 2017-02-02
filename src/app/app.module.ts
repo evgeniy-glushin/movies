@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { MoviesComponent } from './movies/movies.component';
 import { MovieDetailsComponentComponent } from './movie-details-component/movie-details-component.component';
 import { MovieCardDirective } from './common/movie-card.directive';
+import { HighlightDirective } from './common/highlight.directive';
 
 let route = [
   { path: '', component: MoviesComponent },
@@ -19,7 +20,8 @@ let route = [
     AppComponent,
     MoviesComponent,
     MovieDetailsComponentComponent,
-    MovieCardDirective
+    MovieCardDirective,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,

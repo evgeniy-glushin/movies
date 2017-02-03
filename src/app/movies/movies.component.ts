@@ -1,6 +1,7 @@
 import { MoviesService } from './movies.service';
 import { Component, OnInit } from '@angular/core';
 import { Movie } from './movie'
+// import { MovieCardComponent } from './../movie-card/movie-card.component' 
 
 @Component({
   selector: 'app-movies',

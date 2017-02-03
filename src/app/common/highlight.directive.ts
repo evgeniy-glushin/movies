@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: '[myHighlight]',
+  selector: '[myHighlight]'
 })
 export class HighlightDirective implements OnInit {
 

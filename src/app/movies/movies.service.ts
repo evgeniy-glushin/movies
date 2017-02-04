@@ -7,13 +7,24 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class MoviesService {
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+    console.log('MoviesService was created.')
+  }
+
+  private _cachedMovies: Movie[]
 
   getAll(): Promise<Movie[]> {
+    if (this._cachedMovies) {
+      console.log('The data was taken from cache.')
+      return Promise.resolve(this._cachedMovies)
+    }
     return this.http.get('data.json')
       .toPromise()
-      .then(r => r.json() as Movie[])
-      .catch(this.handleError)
+      .then(r => {
+        console.log('Request to the server.')
+        this._cachedMovies = r.json() as Movie[]
+        return this._cachedMovies
+      }).catch(this.handleError)
   }
 
   getByTitle(title: string): Promise<Movie> {

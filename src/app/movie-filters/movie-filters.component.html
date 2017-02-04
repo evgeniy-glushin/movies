@@ -1,0 +1,24 @@
+<div class="container">
+  <form (ngSubmit)="onSearch()">
+    <div class="col-md-2">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" name="title"
+               [(ngModel)]="title"/>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2"></div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
+
+
+<!--
+{rating: "9.1", year: "2016", genres: ["Sci-Fi", "Thriller", "Western"], countries: ["United States"],…} countries:["United
+States"] description:"A series inspired by the 1973 film of the same title written by Michael Crichton about a futuristic
+theme park populated by artificial beings." genres:["Sci-Fi", "Thriller", "Western"] imgUrl:"https://uploads.ororo-mirror.tv/uploads/show/poster/957/thumb_proper_luGF2ODxunHvDXWPRW9PjywIvuD.jpg"
+length:"60" rating:"9.1" title:"Westworld" url:"https://ororo.tv/en/shows/westworld" year:"2016"-->

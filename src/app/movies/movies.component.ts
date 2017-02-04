@@ -2,13 +2,12 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MoviesService } from './movies.service';
 import { Component, OnInit } from '@angular/core';
 import { Movie } from './movie'
-// import { MovieCardComponent } from './../movie-card/movie-card.component' 
+import * as _ from "lodash";
 
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
   // styleUrls: ['./movies.component.css'],
-  providers: [MoviesService]
 })
 export class MoviesComponent implements OnInit {
 
@@ -20,7 +19,7 @@ export class MoviesComponent implements OnInit {
       .then(data => this.movies = data)
   }
 
-  private movieSelectedHandler({title}){
+  private movieSelectedHandler({title}) {
     this.router.navigate(['movies/', title])
     console.log('movieSelectedHandler ', title)
   }

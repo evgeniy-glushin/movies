@@ -9,6 +9,7 @@ import { MoviesComponent } from './movies/movies.component';
 import { HighlightDirective } from './common/highlight.directive';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
+import { MovieFiltersComponent } from './movie-filters/movie-filters.component';
 
 let route = [
   { path: '', component: MoviesComponent },
@@ -21,7 +22,8 @@ let route = [
     MoviesComponent,
     HighlightDirective,
     MovieDetailsComponent,
-    MovieCardComponent
+    MovieCardComponent,
+    MovieFiltersComponent
   ],
   imports: [
     BrowserModule,

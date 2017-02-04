@@ -1,13 +1,5 @@
 <div class="row">
   <div *ngFor="let movie of movies" class="col-md-2">
-    <div class="row">
-      <img src="{{movie.imgUrl}}" class="rounded float-left" alt="{{movie.title}}">
-    </div>
-    <div class="row">
-      <movie-card></movie-card>
-      <a [routerLink]="['/movies', movie.title]" [myHighlight]="Yellow">{{movie.title}}</a>
-      <!--Alternative way how to use navigation
-        this.router.navigate(['/product-details', id]);-->
-    </div>
+    <movie-card [movie]='movie' (onSelected)='movieSelectedHandler($event)'></movie-card>
   </div>
 </div>

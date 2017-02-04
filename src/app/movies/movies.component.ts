@@ -1,3 +1,4 @@
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MoviesService } from './movies.service';
 import { Component, OnInit } from '@angular/core';
 import { Movie } from './movie'
@@ -11,12 +12,17 @@ import { Movie } from './movie'
 })
 export class MoviesComponent implements OnInit {
 
-  constructor(private service: MoviesService) { }
+  constructor(private service: MoviesService, private router: Router) { }
 
   private movies: Movie[];
   ngOnInit() {
     this.service.getAll()
       .then(data => this.movies = data)
+  }
+
+  private movieSelectedHandler({title}){
+    this.router.navigate(['movies/', title])
+    console.log('movieSelectedHandler ', title)
   }
 }
 

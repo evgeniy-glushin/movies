@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Movie } from './../movies/movie';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'movie-card',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MovieCardComponent implements OnInit {
 
-  constructor() { }
+  @Input('movie') movie: Movie
+  @Output() onSelected = new EventEmitter<Movie>()
 
-  ngOnInit() {
+  constructor() {
+    // console.log('constructor: ', this.movie)
   }
 
+  private onMovieClicked(e) {
+    this.onSelected.emit(this.movie)
+
+    // console.log('onMovieClicked', e)
+  }
+
+  ngOnInit() {
+    // console.log('ngOnInit', this.movie)
+  }
 }

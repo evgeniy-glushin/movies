@@ -11,16 +11,25 @@ import * as _ from "lodash";
 })
 export class MoviesComponent implements OnInit {
 
-  constructor(private service: MoviesService, private router: Router) { }
+  constructor(private service: MoviesService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
+    console.log('MoviesComponent was created.')
+  }
 
   private movies: Movie[];
   ngOnInit() {
-    this.service.getAll()
-      .then(data => this.movies = data)
+    this.activatedRoute.params
+      .subscribe(params => {
+        let title: string = params['params']
+        console.log('filter params: ', title)
+        this.service.getAll()
+          .then(data => this.movies = data.filter(x => !title || x.title.indexOf(title) >= 0))
+      })
   }
 
   private movieSelectedHandler({title}) {
-    this.router.navigate(['movies/', title])
+    this.router.navigate(['movie-details/', title])
     console.log('movieSelectedHandler ', title)
   }
 }

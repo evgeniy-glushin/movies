@@ -4,6 +4,6 @@
 
 
 <!--<a [routerLink]="['/home']">Home</a>-->
-<movie-filters></movie-filters>
+<movie-filters (onFilterChanged)="onFilterChangeHandler($event)"></movie-filters>
 
 <router-outlet></router-outlet>

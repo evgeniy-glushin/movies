@@ -1,5 +1,6 @@
 import { MoviesService } from './../movies/movies.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { MovieFilters } from './movie-filters'
 
 @Component({
   selector: 'movie-filters',
@@ -8,11 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MovieFiltersComponent implements OnInit {
 
-  title: string
+  @Output() onFilterChanged = new EventEmitter<MovieFilters>()
 
   constructor(private service: MoviesService) { }
 
   ngOnInit() {
   }
 
+  private onChanged(title: string) {
+    if(title.length > 2)
+      this.onFilterChanged.emit({title})
+  }
 }

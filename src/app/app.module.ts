@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { Routes, RouterModule } from '@angular/router'
+import { Routes, RouterModule, Route } from '@angular/router'
 
 import { AppComponent } from './app.component';
 import { MoviesComponent } from './movies/movies.component';
@@ -11,9 +11,12 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { MovieFiltersComponent } from './movie-filters/movie-filters.component';
 
-let route = [
-  { path: '', component: MoviesComponent },
-  { path: 'movies/:title', component: MovieDetailsComponent }
+let route: Route[] = [
+  { path: 'movies/', component: MoviesComponent },
+  { path: '', redirectTo: 'movies/', pathMatch: 'full' },
+  { path: 'movies/:params', component: MoviesComponent },
+  { path: 'movie-details/:title', component: MovieDetailsComponent }
+  // { path: '**', component: PageNotFoundComponent }
 ]
 
 @NgModule({

@@ -12,9 +12,10 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
 import { MovieFiltersComponent } from './movie-filters/movie-filters.component';
 
 let route: Route[] = [
-  { path: 'movies/', component: MoviesComponent },
-  { path: '', redirectTo: 'movies/', pathMatch: 'full' },
-  { path: 'movies/:params', component: MoviesComponent },
+  { path: '', component: MoviesComponent },
+  // { path: 'movies/', component: MoviesComponent },
+  // { path: '', redirectTo: 'movies/', pathMatch: 'full' },
+  // { path: 'movies/:params', component: MoviesComponent },
   { path: 'movie-details/:title', component: MovieDetailsComponent }
   // { path: '**', component: PageNotFoundComponent }
 ]

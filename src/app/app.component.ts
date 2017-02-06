@@ -14,7 +14,7 @@ export class AppComponent {
   constructor(private router: Router) { }
 
   private onFilterChangeHandler({title}) {
-    this.router.navigate(['movies/', title])
+    this.router.navigate(['?title=' + title])
     // console.log("app.comp.title", title)
   }
 }

@@ -24,38 +24,26 @@ export class MoviesComponent implements OnInit {
     let sessionId = this.activatedRoute
       .queryParams
       .subscribe(params => {
-        let title = params['title']
+        let title = params['title'] as string
         console.log('title: ', title);
+
+        let rating = (params['rating'] || 0) * 1
+        console.log('movies-list. rating: ', rating);
+        console.log('movies-list. rating type: ', typeof (rating));
+
+        let titleFilter = (x: Movie) => !title || x.title.toLowerCase().indexOf(title) >= 0
+        let ratingFilter = (x: Movie) => !rating || x.rating >= rating
+
         this.service.getAll()
-          .then(data => this.movies = data.filter(x => !title || x.title.indexOf(title) >= 0))
+          .then(data => this.movies = data.filter(x => titleFilter(x) && ratingFilter(x)))
       });
 
-    // Capture the fragment if available
-    // this.token = this.route
-    //   .fragment
-    //   .map(fragment => fragment || 'None');
-
-
-    // this.sub = this.activatedRoute
-    //   .queryParams
-    //   .subscribe(params => {
-    //     let title = params['title']
-    //     console.log('title: ', title);
-    //     this.service.getAll()
-    //       .then(data => this.movies = data.filter(x => !title || x.title.indexOf(title) >= 0))
-    //   });
-
+    /*This line has been taken from A2 docs and it doesn't work*/
     // let title = this.activatedRoute
     //   .queryParams.map(params => params['session_id'] || 'None');
 
+    /*This is how we can get some static date from the route*/
     // console.log('snapshot title', this.activatedRoute.snapshot.data[0]['title'])
-    // this.activatedRoute.params
-    //   .subscribe(params => {
-    //     let title: string = params['params']
-    //     console.log('filter params: ', title)
-    //     this.service.getAll()
-    //       .then(data => this.movies = data.filter(x => !title || x.title.indexOf(title) >= 0))
-    //   })
   }
 
   ngOnDestroy() {

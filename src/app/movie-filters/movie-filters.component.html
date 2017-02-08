@@ -2,12 +2,18 @@
   <form (ngSubmit)="onSearch()">
     <div class="col-md-2">
       <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" class="form-control" id="title" name="title"
-               #title (keyup)="onChanged(title.value)"/>
+        <label for="title">Title:</label>
+        <input type="text" class="form-control" id="title" name="title" 
+               #title (keyup)="onChanged(title.value, rating.value)" />
       </div>
     </div>
-    <div class="col-md-2"></div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>Rating (At least):</label>
+        <input type="text" class="form-control" id="rating" name="rating"
+               #rating (keyup)="onChanged(title.value, rating.value)">
+      </div>
+    </div>
     <div class="col-md-2"></div>
     <div class="col-md-2"></div>
     <div class="col-md-2"></div>

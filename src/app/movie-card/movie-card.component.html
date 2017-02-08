@@ -2,7 +2,7 @@
   <img src="{{movie.imgUrl}}" class="rounded float-left" alt="{{movie.title}}">
 </div>
 <div class="row">
-  <a [myHighlight]="Yellow" (click)="onMovieClicked($event)">{{movie.title}}</a>
+  <a [myHighlight]="Yellow" (click)="onMovieClicked($event)">{{movie.title}} ({{movie.rating}})</a>
   <!--[routerLink]="['/movies', movie.title]"-->
   <!--Alternative way how to use navigation this.router.navigate(['/product-details', id]);-->
 </div>

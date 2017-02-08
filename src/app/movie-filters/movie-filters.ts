@@ -1,3 +1,4 @@
 export interface MovieFilters {
-    title?: string    
+    title?: string,
+    rating?: number  
 }

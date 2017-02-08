@@ -16,8 +16,17 @@ export class MovieFiltersComponent implements OnInit {
   ngOnInit() {
   }
 
-  private onChanged(title: string) {
+  private onChanged(title: string, rating: string) {
     // if(title.length > 2)
-    this.onFilterChanged.emit({ title })
+    console.log('filters. rating: ', rating)
+    console.log('filters. rating type: ', typeof(rating)) //it's always string even if declare rating input as number
+    
+    let ratingNum = parseFloat(rating)
+    console.log('filters. retingNum: ', ratingNum) //it's always string even if declare rating input as number
+
+
+    this.onFilterChanged.emit({ 
+      title: title.trim(), 
+      rating: ratingNum ? ratingNum : undefined })
   }
 }

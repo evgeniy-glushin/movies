@@ -1,5 +1,5 @@
 import { MoviesService } from './movies/movies.service';
-import { Router } from '@angular/router'
+import { Router, NavigationExtras } from '@angular/router'
 import { Component } from '@angular/core';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 
@@ -14,7 +14,10 @@ export class AppComponent {
   constructor(private router: Router) { }
 
   private onFilterChangeHandler({title}) {
-    this.router.navigate(['?title=' + title])
+    let navigationExtras: NavigationExtras = {
+      queryParams: { 'title': title }
+    };
+    this.router.navigate(['movies', navigationExtras])
     // console.log("app.comp.title", title)
   }
 }

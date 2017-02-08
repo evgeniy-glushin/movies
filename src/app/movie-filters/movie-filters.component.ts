@@ -17,7 +17,7 @@ export class MovieFiltersComponent implements OnInit {
   }
 
   private onChanged(title: string) {
-    if(title.length > 2)
-      this.onFilterChanged.emit({title})
+    // if(title.length > 2)
+    this.onFilterChanged.emit({ title })
   }
 }

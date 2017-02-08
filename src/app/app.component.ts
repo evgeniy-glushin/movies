@@ -14,10 +14,17 @@ export class AppComponent {
   constructor(private router: Router) { }
 
   private onFilterChangeHandler({title}) {
+    console.log('onFilterChangeHandler title: ', title)
+
     let navigationExtras: NavigationExtras = {
-      queryParams: { 'title': title }
+      queryParams: { 'title': title },
+      fragment: 'anchor'
     };
-    this.router.navigate(['movies', navigationExtras])
-    // console.log("app.comp.title", title)
+
+    this.router.navigateByUrl('/?title=' + title)
+
+    // this.router.navigate(['/movies', navigationExtras])
+    //   .then(x => console.log('navigation complited - ', x))
+    console.log('this.router.navigate was called')
   }
 }

@@ -1,4 +1,7 @@
 export interface MovieFilters {
     title?: string,
-    rating?: number  
+    rating?: number,
+    length?: number,
+    genres?: string[],
+    countries?: string[]
 }

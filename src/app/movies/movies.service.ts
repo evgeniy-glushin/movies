@@ -1,7 +1,7 @@
 import { Movie } from './movie';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http'
-
+import * as _ from "lodash";
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -11,8 +11,17 @@ export class MoviesService {
     console.log('MoviesService was created.')
   }
 
-  private _cachedMovies: Movie[]
+  uniqueGenres() {
+    return this.getAll()
+      .then(data => _.reduce(data, (acc: string[], m) => _.union(acc, m.genres), []))
+  }
 
+  uniqueCountries() {
+    return this.getAll()
+      .then(data => _.reduce(data, (acc: string[], m) => _.union(acc, m.countries), []))
+  }
+
+  private _cachedMovies: Movie[]
   getAll(): Promise<Movie[]> {
     if (this._cachedMovies) {
       console.log('The data was taken from cache.')

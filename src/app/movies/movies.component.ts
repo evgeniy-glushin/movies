@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Movie } from './movie'
 import * as _ from "lodash";
 
+
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
@@ -18,15 +19,15 @@ export class MoviesComponent implements OnInit {
     console.log('MoviesComponent was created.')
   }
 
-  private sub
-  private movies: Movie[];
+  private paramsSub
+  private movies: Movie[]
   ngOnInit() {
-    let sessionId = this.activatedRoute
+    this.paramsSub = this.activatedRoute
       .queryParams
       .subscribe(params => {
         let title = params['title'] as string
         console.log('title: ', title);
-
+        let myAdd = function (x: number, y: number): number { return x + y; };
         let rating = (params['rating'] || 0) * 1
         console.log('movies-list. rating: ', rating);
         console.log('movies-list. rating type: ', typeof (rating));
@@ -42,12 +43,22 @@ export class MoviesComponent implements OnInit {
     // let title = this.activatedRoute
     //   .queryParams.map(params => params['session_id'] || 'None');
 
-    /*This is how we can get some static date from the route*/
+    /*This is how we can get some static data from the route*/
     // console.log('snapshot title', this.activatedRoute.snapshot.data[0]['title'])
+
+    // interface FilterFunc { (movie: Movie, paramName: string): boolean }
+
+    // let buildFilters = (...funcs: FilterFunc[]) => 
+    //   _.map(funcs, )
+  }
+
+  //TODO: not implemented 
+  private buildFiltersExp() {
+
   }
 
   ngOnDestroy() {
-    if (this.sub) this.sub.unsubscribe();
+    if (this.paramsSub) this.paramsSub.unsubscribe();
   }
 
   private movieSelectedHandler({title}) {

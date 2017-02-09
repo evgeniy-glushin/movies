@@ -3,19 +3,24 @@
     <div class="col-md-2">
       <div class="form-group">
         <label for="title">Title:</label>
-        <input type="text" class="form-control" id="title" name="title" #title (keyup)="onChanged(title.value, rating.value)" />
+        <input type="text" class="form-control" id="title" name="title" 
+        #title (keyup)="onChanged(title.value, rating.value, countr.value, genr.value, dur.value)"
+        />
       </div>
     </div>
     <div class="col-md-2">
       <div class="form-group">
         <label for="rating">Rating (At least):</label>
-        <input type="text" class="form-control" id="rating" name="rating" #rating (keyup)="onChanged(title.value, rating.value)">
+        <input type="text" class="form-control" id="rating" name="rating" 
+        #rating (keyup)="onChanged(title.value, rating.value, countr.value, genr.value, dur.value)">
       </div>
     </div>
     <div class="col-md-2">
       <div class="form-group">
         <label for="countries">Countries:</label>
-        <select name="countries" id="countries" class="form-control">
+        <select name="countries" id="countries" class="form-control" 
+        #countr (change)="onChanged(title.value, rating.value, countr.value, genr.value, dur.value)">
+          <option>None</option>
           <option *ngFor="let country of countries">
             {{country}}
           </option>
@@ -25,22 +30,22 @@
     <div class="col-md-2">
       <div class="form-group">
         <label for="genres">Genres:</label>
-        <select name="genres" id="genres" class="form-control">
+        <select name="genres" id="genres" class="form-control" 
+        #genr (change)="onChanged(title.value, rating.value, countr.value, genr.value, dur.value)">
+          <option>None</option>
           <option *ngFor="let genre of genres">
             {{genre}}
           </option>
         </select>
       </div>
     </div>
-    <div class="col-md-2"></div>
-    <div class="col-md-2"></div>
-    <!--<button type="submit" class="btn btn-success">Submit</button>-->
+    <div class="col-md-2">
+      <div class="form-group">
+        <label for="duration">Duration (At most):</label>
+        <input type="text" class="form-control" id="duration" name="duration" 
+        #dur (keyup)="onChanged(title.value, rating.value, countr.value, genr.value, dur.value)">
+      </div>
+    </div>
   </form>
 </div>
 
-
-<!--
-{rating: "9.1", year: "2016", genres: ["Sci-Fi", "Thriller", "Western"], countries: ["United States"],…} countries:["United
-States"] description:"A series inspired by the 1973 film of the same title written by Michael Crichton about a futuristic
-theme park populated by artificial beings." genres:["Sci-Fi", "Thriller", "Western"] imgUrl:"https://uploads.ororo-mirror.tv/uploads/show/poster/957/thumb_proper_luGF2ODxunHvDXWPRW9PjywIvuD.jpg"
-length:"60" rating:"9.1" title:"Westworld" url:"https://ororo.tv/en/shows/westworld" year:"2016"-->

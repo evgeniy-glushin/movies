@@ -17,23 +17,38 @@ export class MovieFiltersComponent implements OnInit {
   genres: string[]
   ngOnInit() {
     this.service.uniqueCountries()
-      .then(x => this.countries = x)
+      .then(x => {
+        console.log('this.countries ', x)
+        this.countries = x
+      })
 
     this.service.uniqueGenres()
       .then(x => this.genres = x)
   }
 
-  private onChanged(title: string, rating: string) {
-    // if(title.length > 2)
+  private onChanged(title: string,
+    rating: string,
+    country: string,
+    genre: string,
+    duration: string) {
+    console.log('filters. country: ', country)
+    console.log('filters. duration: ', duration)
+    console.log('filters. genre: ', genre)
     console.log('filters. rating: ', rating)
     console.log('filters. rating type: ', typeof (rating)) //it's always string even if declare rating input as number
 
     let ratingNum = parseFloat(rating)
     console.log('filters. retingNum: ', ratingNum) //it's always string even if declare rating input as number
 
+    let durationNum = parseInt(duration)
+    console.log('filters. durationNum: ', durationNum) //it's always string even if declare rating input as number
+
     this.onFilterChanged.emit({
       title: title.trim(),
-      rating: ratingNum ? ratingNum : undefined
+      rating: ratingNum ? ratingNum : undefined,
+      length: durationNum ? durationNum : undefined,
+      genres: genre ? genre : undefined,
+      countries: country ? country : undefined
     })
   }
 }

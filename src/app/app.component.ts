@@ -15,7 +15,9 @@ export class AppComponent {
 
   constructor(private router: Router) { }
 
-  private onFilterChangeHandler({title, rating}: MovieFilters) {
+  private onFilterChangeHandler(filters: MovieFilters) {
+    let {title, rating, length, genres, countries} = filters;
+
     console.log('onFilterChangeHandler title: ', title)
 
     //TODO: refactor this
@@ -24,6 +26,9 @@ export class AppComponent {
     let url = '/?'
     if (title) url += `title=${title}`
     if (rating) url += `${calcUrlChank()}rating=${rating}`
+    if (length) url += `${calcUrlChank()}length=${length}`
+    if (genres && genres != 'None') url += `${calcUrlChank()}genres=${genres}`
+    if (countries && countries != 'None') url += `${calcUrlChank()}countries=${countries}`
 
     if (url != '/?') {
       this.router.navigateByUrl(url)

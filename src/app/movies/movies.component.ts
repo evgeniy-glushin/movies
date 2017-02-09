@@ -26,17 +26,28 @@ export class MoviesComponent implements OnInit {
       .queryParams
       .subscribe(params => {
         let title = params['title'] as string
-        console.log('title: ', title);
-        let myAdd = function (x: number, y: number): number { return x + y; };
-        let rating = (params['rating'] || 0) * 1
-        console.log('movies-list. rating: ', rating);
-        console.log('movies-list. rating type: ', typeof (rating));
-
         let titleFilter = (x: Movie) => !title || x.title.toLowerCase().indexOf(title) >= 0
+
+        let rating = (params['rating'] || 0) * 1
         let ratingFilter = (x: Movie) => !rating || x.rating >= rating
 
+        let length = (params['length'] || 0) * 1
+        let lengthFilter = (x: Movie) => !length || x.length <= length
+
+        let genres = params['genres'] as string
+        let genresFilter = (x: Movie) => !genres || _.includes(x.genres, genres)
+        console.log("list-genres: ", genres)
+
+        let countries = params['countries'] as string
+        let countriesFilter = (x: Movie) => !countries || _.includes(x.countries, countries)
+        console.log("list-countries: ", countries)
+
         this.service.getAll()
-          .then(data => this.movies = data.filter(x => titleFilter(x) && ratingFilter(x)))
+          .then(data => this.movies = data.filter(x => titleFilter(x) && 
+                                                       ratingFilter(x) &&
+                                                       lengthFilter(x) &&
+                                                       genresFilter(x) &&
+                                                       countriesFilter(x)))
       });
 
     /*This line has been taken from A2 docs and it doesn't work*/

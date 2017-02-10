@@ -3,15 +3,14 @@
     <div class="col-md-2">
       <div class="form-group">
         <label for="title">Title:</label>
-        <input type="text" class="form-control" id="title" name="title" 
-        #title (keyup)="onChanged(title.value, rating.value, countr.value, genr.value, dur.value)"
-        />
+        <input type="text" class="form-control" id="title" name="title" [value]="filters.title || ''"
+        #title (keyup)="onChanged(title.value, rating.value, countr.value, genr.value, dur.value)"/>
       </div>
     </div>
     <div class="col-md-2">
       <div class="form-group">
         <label for="rating">Rating (At least):</label>
-        <input type="text" class="form-control" id="rating" name="rating" 
+        <input type="text" class="form-control" id="rating" name="rating" [value]="filters.rating || ''"
         #rating (keyup)="onChanged(title.value, rating.value, countr.value, genr.value, dur.value)">
       </div>
     </div>
@@ -21,7 +20,7 @@
         <select name="countries" id="countries" class="form-control" 
         #countr (change)="onChanged(title.value, rating.value, countr.value, genr.value, dur.value)">
           <option>None</option>
-          <option *ngFor="let country of countries">
+          <option *ngFor="let country of countries" [selected]="country == filters.countries ? 'selected' : ''">
             {{country}}
           </option>
         </select>
@@ -33,7 +32,7 @@
         <select name="genres" id="genres" class="form-control" 
         #genr (change)="onChanged(title.value, rating.value, countr.value, genr.value, dur.value)">
           <option>None</option>
-          <option *ngFor="let genre of genres">
+          <option *ngFor="let genre of genres" [selected]="genre == filters.genres ? 'selected': ''">
             {{genre}}
           </option>
         </select>
@@ -42,7 +41,7 @@
     <div class="col-md-2">
       <div class="form-group">
         <label for="duration">Duration (At most):</label>
-        <input type="text" class="form-control" id="duration" name="duration" 
+        <input type="text" class="form-control" id="duration" name="duration" [value]="filters.length || ''"
         #dur (keyup)="onChanged(title.value, rating.value, countr.value, genr.value, dur.value)">
       </div>
     </div>

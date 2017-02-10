@@ -1,6 +1,8 @@
+import { ActivatedRoute } from '@angular/router';
 import { MoviesService } from './../movies/movies.service';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { MovieFilters } from './movie-filters'
+import { FiltersRouteUtil } from './filters-route-util'
 
 @Component({
   selector: 'movie-filters',
@@ -11,37 +13,29 @@ export class MovieFiltersComponent implements OnInit {
 
   @Output() onFilterChanged = new EventEmitter<MovieFilters>()
 
-  constructor(private service: MoviesService) { }
+  constructor(private service: MoviesService, private route: ActivatedRoute) { }
 
-  countries: string[]
-  genres: string[]
+  private filters: MovieFilters
+  private countries: string[]
+  private genres: string[]
   ngOnInit() {
-    this.service.uniqueCountries()
-      .then(x => {
-        console.log('this.countries ', x)
-        this.countries = x
+    let paramsSub = this.route
+      .queryParams
+      .subscribe(params => {
+        this.filters = FiltersRouteUtil.parse(params)
+        console.log('filters component: ', this.filters)
       })
+
+    this.service.uniqueCountries()
+      .then(x => this.countries = x)
 
     this.service.uniqueGenres()
       .then(x => this.genres = x)
   }
 
-  private onChanged(title: string,
-    rating: string,
-    country: string,
-    genre: string,
-    duration: string) {
-    console.log('filters. country: ', country)
-    console.log('filters. duration: ', duration)
-    console.log('filters. genre: ', genre)
-    console.log('filters. rating: ', rating)
-    console.log('filters. rating type: ', typeof (rating)) //it's always string even if declare rating input as number
-
-    let ratingNum = parseFloat(rating)
-    console.log('filters. retingNum: ', ratingNum) //it's always string even if declare rating input as number
-
+  private onChanged(title: string, rating: string, country: string, genre: string, duration: string) {
+    let ratingNum = parseFloat(rating) //it's always string even if declare rating input as number
     let durationNum = parseInt(duration)
-    console.log('filters. durationNum: ', durationNum) //it's always string even if declare rating input as number
 
     this.onFilterChanged.emit({
       title: title.trim(),

@@ -37,7 +37,6 @@ export class MovieFiltersComponent implements OnInit {
       .then(x => this.genres = x)
   }
 
-  // private selectedGenres: string[] = []
   private removeGenre(genre: string) {
     if (this.filters.genres)
       _.remove(this.filters.genres, x => x == genre)
@@ -46,32 +45,43 @@ export class MovieFiltersComponent implements OnInit {
     this.onFilterChanged.emit(this.filters)
   }
 
-  private selectedCountries: string[]
   private removeCountry(country: string) {
-    _.remove(this.selectedCountries, x => x == country)
+    if (this.filters.countries)
+      _.remove(this.filters.countries, x => x == country)
+    this.countries.push(country)
+    console.log('removeGenre this.filters.countries', this.filters.countries)
+    this.onFilterChanged.emit(this.filters)
   }
 
   private onChanged(title: string, rating: string, country: string, genre: string, duration: string) {
     this.filters.changedFilter = 'none'
     console.log('movies-filters genre', genre)
-    if (genre) {
-      if (genre != 'None') {
-        this.filters.changedFilter = 'genres'
-        _.remove(this.genres, x => x == genre)
-        if (this.filters.genres)
-          this.filters.genres.push(genre)
-        console.log('selectedGenres', this.filters.genres)
-      }
+    console.log('movies-filters country', country)
+
+    if (genre != 'None') {
+      this.filters.changedFilter = 'genres'
+      _.remove(this.genres, x => x == genre)
+      if (this.filters.genres)
+        this.filters.genres.push(genre)
+      console.log('selectedGenres', this.filters.genres)
     }
 
-    let valDef = <TInput>(value: TInput, defaultValue: TInput | undefined) =>
+    if (country != 'None') {
+      this.filters.changedFilter = 'countries'
+      _.remove(this.countries, x => x == country)
+      if (this.filters.countries)
+        this.filters.countries.push(country)
+      console.log('selectedcountries', this.filters.countries)
+    }
+
+    let valOrDef = <TInput>(value: TInput, defaultValue: TInput | undefined) =>
       _.isNil(value) || _.isNaN(value) ? defaultValue : value;
 
-    let ratingNum = valDef(parseFloat(rating), undefined) //it's always string even if declare rating input as number
-    let durationNum = valDef(parseInt(duration), undefined)
+    let ratingNum = valOrDef(parseFloat(rating), undefined) //it's always string even if declare rating input as number
+    let durationNum = valOrDef(parseInt(duration), undefined)
 
     let f = this.filters;
-    [f.title, f.rating, f.length, f.countries] = [title.trim(), ratingNum, durationNum, valDef(country, undefined)]
+    [f.title, f.rating, f.length] = [title.trim(), ratingNum, durationNum]
 
     this.onFilterChanged.emit(this.filters)
   }

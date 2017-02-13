@@ -28,7 +28,7 @@ export class AppComponent {
     if (rating) url += `${calcUrlChank()}rating=${rating}`
     if (length) url += `${calcUrlChank()}length=${length}`
     if (genres && genres.length) url += `${calcUrlChank()}genres=${JSON.stringify(genres)}`
-    if (countries && countries != 'None') url += `${calcUrlChank()}countries=${countries}`
+    if (countries && countries.length) url += `${calcUrlChank()}countries=${JSON.stringify(countries)}`
     if (changedFilter != 'none') url += `${calcUrlChank()}filter=${changedFilter}`
 
     // if (url != '/?') {

@@ -40,14 +40,17 @@ export class MoviesComponent implements OnInit {
 
         let changedFilter: FilterType | undefined = params['filter']
         console.log('movies-component changedFilter', changedFilter)
+
         let genres: string[] = JSON.parse(params['genres'] || '[]')
-         console.log('movies-component genres', genres)
+        console.log('movies-component genres', genres)
         let genresFilter = changedFilter == 'genres' ?
           (x: Movie) => any(x.genres, genres) : (x: Movie) => !genres.length || any(x.genres, genres)
         console.log("list-genres: ", genres)
 
-        let countries = params['countries'] as string
-        let countriesFilter = (x: Movie) => !countries || _.includes(x.countries, countries)
+        let countries: string[] = JSON.parse(params['countries'] || '[]')
+        console.log('movies-component countries', countries)
+        let countriesFilter = changedFilter == 'countries' ?
+          (x: Movie) => any(x.countries, countries) : (x: Movie) => !countries.length || any(x.countries, countries)
         console.log("list-countries: ", countries)
 
         this.service.getAll()

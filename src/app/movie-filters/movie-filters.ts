@@ -5,6 +5,6 @@ export interface MovieFilters {
     rating?: number,
     length?: number,
     genres?: string[],
-    countries?: string,
+    countries?: string[],
     changedFilter: FilterType
 }

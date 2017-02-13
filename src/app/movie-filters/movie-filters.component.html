@@ -53,7 +53,7 @@
   </div>
   <div class="row">
     Countries:
-    <span class="label label-info" *ngFor="let country of selectedCountries">
+    <span class="label label-info" *ngFor="let country of filters.countries">
        <span class="label label-info" (click)="removeCountry(country)">-</span> {{country}}
     </span>
   </div>

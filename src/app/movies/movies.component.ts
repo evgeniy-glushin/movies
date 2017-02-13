@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Movie } from './movie'
 import * as _ from "lodash";
+import { FilterType } from './../movie-filters/filter-type'
 
 
 @Component({
@@ -34,8 +35,15 @@ export class MoviesComponent implements OnInit {
         let length = (params['length'] || 0) * 1
         let lengthFilter = (x: Movie) => !length || x.length <= length
 
-        let genres = params['genres'] as string
-        let genresFilter = (x: Movie) => !genres || _.includes(x.genres, genres)
+        let any = (left: string[], right: string[]) =>
+          _.find(left, x => _.includes(right, x))
+
+        let changedFilter: FilterType | undefined = params['filter']
+        console.log('movies-component changedFilter', changedFilter)
+        let genres: string[] = JSON.parse(params['genres'] || '[]')
+         console.log('movies-component genres', genres)
+        let genresFilter = changedFilter == 'genres' ?
+          (x: Movie) => any(x.genres, genres) : (x: Movie) => !genres.length || any(x.genres, genres)
         console.log("list-genres: ", genres)
 
         let countries = params['countries'] as string
@@ -43,11 +51,11 @@ export class MoviesComponent implements OnInit {
         console.log("list-countries: ", countries)
 
         this.service.getAll()
-          .then(data => this.movies = data.filter(x => titleFilter(x) && 
-                                                       ratingFilter(x) &&
-                                                       lengthFilter(x) &&
-                                                       genresFilter(x) &&
-                                                       countriesFilter(x)))
+          .then(data => this.movies = data.filter(x => titleFilter(x) &&
+            ratingFilter(x) &&
+            lengthFilter(x) &&
+            genresFilter(x) &&
+            countriesFilter(x)))
       });
 
     /*This line has been taken from A2 docs and it doesn't work*/
@@ -61,11 +69,6 @@ export class MoviesComponent implements OnInit {
 
     // let buildFilters = (...funcs: FilterFunc[]) => 
     //   _.map(funcs, )
-  }
-
-  //TODO: not implemented 
-  private buildFiltersExp() {
-
   }
 
   ngOnDestroy() {

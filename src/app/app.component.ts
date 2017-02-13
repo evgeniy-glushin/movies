@@ -16,7 +16,7 @@ export class AppComponent {
   constructor(private router: Router) { }
 
   private onFilterChangeHandler(filters: MovieFilters) {
-    let {title, rating, length, genres, countries} = filters;
+    let {title, rating, length, genres, countries, changedFilter} = filters;
 
     console.log('onFilterChangeHandler title: ', title)
 
@@ -27,13 +27,14 @@ export class AppComponent {
     if (title) url += `title=${title}`
     if (rating) url += `${calcUrlChank()}rating=${rating}`
     if (length) url += `${calcUrlChank()}length=${length}`
-    if (genres && genres != 'None') url += `${calcUrlChank()}genres=${genres}`
+    if (genres && genres.length) url += `${calcUrlChank()}genres=${JSON.stringify(genres)}`
     if (countries && countries != 'None') url += `${calcUrlChank()}countries=${countries}`
+    if (changedFilter != 'none') url += `${calcUrlChank()}filter=${changedFilter}`
 
-    if (url != '/?') {
-      this.router.navigateByUrl(url)
-      console.log('this.router.navigateByUrl was called: ', url)
-    }
+    // if (url != '/?') {
+    this.router.navigateByUrl(url)
+    console.log('this.router.navigateByUrl was called: ', url)
+    // }
 
     // let navigationExtras: NavigationExtras = {
     //   queryParams: { 'title': title },

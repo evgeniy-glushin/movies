@@ -1,9 +1,15 @@
-<!--<h1>
-  {{title}}
-</h1>-->
-
-
 <!--<a [routerLink]="['/home']">Home</a>-->
-<movie-filters (onFilterChanged)="onFilterChangeHandler($event)"></movie-filters>
 
-<router-outlet></router-outlet>
+<!--
+TODO: 
+- multiply select for genres and countries
+- header
+- pretty design
+- code clean up and refactoring
+-->
+
+
+<div class="container body-content">
+  <movie-filters (onFilterChanged)="onFilterChangeHandler($event)"></movie-filters>
+  <router-outlet></router-outlet>
+</div>

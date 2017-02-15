@@ -8,8 +8,7 @@ import * as _ from 'lodash'
 
 @Component({
   selector: 'movie-filters',
-  templateUrl: './movie-filters.component.html',
-  // styleUrls: ['./movie-filters.component.css']
+  templateUrl: './movie-filters.component.html'
 })
 export class MovieFiltersComponent implements OnInit {
 
@@ -25,7 +24,6 @@ export class MovieFiltersComponent implements OnInit {
       .queryParams
       .subscribe(params => {
         this.filters = FiltersRouteUtil.parse(params)
-        console.log('filters component: ', this.filters)
       })
 
     this.service.uniqueCountries()
@@ -39,7 +37,6 @@ export class MovieFiltersComponent implements OnInit {
     if (this.filters.genres)
       _.remove(this.filters.genres, x => x == genre)
     this.genres.push(genre)
-    console.log('removeGenre this.filters.genres', this.filters.genres)
     this.onFilterChanged.emit(this.filters)
   }
 
@@ -47,21 +44,16 @@ export class MovieFiltersComponent implements OnInit {
     if (this.filters.countries)
       _.remove(this.filters.countries, x => x == country)
     this.countries.push(country)
-    console.log('removeGenre this.filters.countries', this.filters.countries)
     this.onFilterChanged.emit(this.filters)
   }
 
   private onChanged(title: string, rating: string, country: string, genre: string, duration: string) {
     this.filters.changedFilter = 'none'
-    console.log('movies-filters genre', genre)
-    console.log('movies-filters country', country)
-
     if (genre != 'None') {
       this.filters.changedFilter = 'genres'
       _.remove(this.genres, x => x == genre)
       if (this.filters.genres)
         this.filters.genres.push(genre)
-      console.log('selectedGenres', this.filters.genres)
     }
 
     if (country != 'None') {
@@ -69,7 +61,6 @@ export class MovieFiltersComponent implements OnInit {
       _.remove(this.countries, x => x == country)
       if (this.filters.countries)
         this.filters.countries.push(country)
-      console.log('selectedcountries', this.filters.countries)
     }
 
     let valOrDef = <TInput>(value: TInput, defaultValue: TInput | undefined) =>

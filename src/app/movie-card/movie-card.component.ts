@@ -3,8 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'movie-card',
-  templateUrl: './movie-card.component.html',
-  // styleUrls: ['./movie-card.component.css']
+  templateUrl: './movie-card.component.html'
 })
 export class MovieCardComponent implements OnInit {
 
@@ -12,16 +11,12 @@ export class MovieCardComponent implements OnInit {
   @Output() onSelected = new EventEmitter<Movie>()
 
   constructor() {
-    // console.log('constructor: ', this.movie)
   }
 
   private onMovieClicked(e) {
     this.onSelected.emit(this.movie)
-
-    // console.log('onMovieClicked', e)
   }
 
   ngOnInit() {
-    // console.log('ngOnInit', this.movie)
   }
 }

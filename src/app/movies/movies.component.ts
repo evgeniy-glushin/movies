@@ -60,18 +60,6 @@ export class MoviesComponent implements OnInit {
             genresFilter(x) &&
             countriesFilter(x)))
       });
-
-    /*This line has been taken from A2 docs and it doesn't work*/
-    // let title = this.activatedRoute
-    //   .queryParams.map(params => params['session_id'] || 'None');
-
-    /*This is how we can get some static data from the route*/
-    // console.log('snapshot title', this.activatedRoute.snapshot.data[0]['title'])
-
-    // interface FilterFunc { (movie: Movie, paramName: string): boolean }
-
-    // let buildFilters = (...funcs: FilterFunc[]) => 
-    //   _.map(funcs, )
   }
 
   ngOnDestroy() {
@@ -80,7 +68,6 @@ export class MoviesComponent implements OnInit {
 
   private movieSelectedHandler({title}) {
     this.router.navigate(['movie-details/', title])
-    console.log('movieSelectedHandler ', title)
   }
 }
 

@@ -18,29 +18,18 @@ export class AppComponent {
   private onFilterChangeHandler(filters: MovieFilters) {
     let {title, rating, length, genres, countries, changedFilter} = filters;
 
-    console.log('onFilterChangeHandler title: ', title)
-
     //TODO: refactor this
-    let calcUrlChank = () => _.last(url) == '&' || _.last(url) == '?' ? '' : '&'
+    let calcUrlChunk = () => _.last(url) == '&' || _.last(url) == '?' ? '' : '&'
 
     let url = '/?'
     if (title) url += `title=${title}`
-    if (rating) url += `${calcUrlChank()}rating=${rating}`
-    if (length) url += `${calcUrlChank()}length=${length}`
-    if (genres && genres.length) url += `${calcUrlChank()}genres=${JSON.stringify(genres)}`
-    if (countries && countries.length) url += `${calcUrlChank()}countries=${JSON.stringify(countries)}`
-    if (changedFilter != 'none') url += `${calcUrlChank()}filter=${changedFilter}`
+    if (rating) url += `${calcUrlChunk()}rating=${rating}`
+    if (length) url += `${calcUrlChunk()}length=${length}`
+    if (genres && genres.length) url += `${calcUrlChunk()}genres=${JSON.stringify(genres)}`
+    if (countries && countries.length) url += `${calcUrlChunk()}countries=${JSON.stringify(countries)}`
+    if (changedFilter != 'none') url += `${calcUrlChunk()}filter=${changedFilter}`
 
-    // if (url != '/?') {
     this.router.navigateByUrl(url)
     console.log('this.router.navigateByUrl was called: ', url)
-    // }
-
-    // let navigationExtras: NavigationExtras = {
-    //   queryParams: { 'title': title },
-    //   fragment: 'anchor'
-    // };
-    // this.router.navigate(['/movies', navigationExtras])
-    //   .then(x => console.log('navigation complited - ', x))
   }
 }

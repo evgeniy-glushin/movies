@@ -1,5 +1,4 @@
 <div class="container">
-  <!--<form (ngSubmit)="onSearch()">-->
   <div class="col-md-2">
     <div class="form-group">
       <label for="title">Title:</label>
@@ -42,7 +41,6 @@
       <input type="text" class="form-control" id="duration" name="duration" [value]="filters.length || ''" #dur (keyup)="onChanged(title.value, rating.value, countr.value, genr.value, dur.value)">
     </div>
   </div>
-  <!--</form>-->
 </div>
 <div class="row">
   <div class="row">

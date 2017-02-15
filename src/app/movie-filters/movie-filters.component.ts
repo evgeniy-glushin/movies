@@ -25,8 +25,6 @@ export class MovieFiltersComponent implements OnInit {
       .queryParams
       .subscribe(params => {
         this.filters = FiltersRouteUtil.parse(params)
-        // this.selectedGenres = this.filters.genres
-        // this.selectedCountries = [this.filters.countries]
         console.log('filters component: ', this.filters)
       })
 

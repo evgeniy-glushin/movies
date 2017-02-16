@@ -9,15 +9,13 @@ import { FilterType } from './../movie-filters/filter-type'
 
 @Component({
   selector: 'app-movies',
-  templateUrl: './movies.component.html',
-  // styleUrls: ['./movies.component.css'],
+  templateUrl: './movies-list.component.html'
 })
-export class MoviesComponent implements OnInit {
+export class MoviesListComponent implements OnInit {
 
   constructor(private service: MoviesService,
     private router: Router,
     private activatedRoute: ActivatedRoute) {
-    console.log('MoviesComponent was created.')
   }
 
   private paramsSub
@@ -39,19 +37,14 @@ export class MoviesComponent implements OnInit {
           _.find(left, x => _.includes(right, x))
 
         let changedFilter: FilterType | undefined = params['filter']
-        console.log('movies-component changedFilter', changedFilter)
 
         let genres: string[] = JSON.parse(params['genres'] || '[]')
-        console.log('movies-component genres', genres)
         let genresFilter = changedFilter == 'genres' ?
           (x: Movie) => any(x.genres, genres) : (x: Movie) => !genres.length || any(x.genres, genres)
-        console.log("list-genres: ", genres)
 
         let countries: string[] = JSON.parse(params['countries'] || '[]')
-        console.log('movies-component countries', countries)
         let countriesFilter = changedFilter == 'countries' ?
           (x: Movie) => any(x.countries, countries) : (x: Movie) => !countries.length || any(x.countries, countries)
-        console.log("list-countries: ", countries)
 
         this.service.getAll()
           .then(data => this.movies = data.filter(x => titleFilter(x) &&

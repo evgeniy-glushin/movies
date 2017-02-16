@@ -1,4 +1,4 @@
-import { MoviesService } from './movies/movies.service';
+import { MoviesService } from './movies-list/movies.service';
 import { Router, NavigationExtras } from '@angular/router'
 import { Component } from '@angular/core';
 import { MovieCardComponent } from './movie-card/movie-card.component';

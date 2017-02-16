@@ -1,5 +1,5 @@
 import { ActivatedRoute } from '@angular/router';
-import { MoviesService } from './../movies/movies.service';
+import { MoviesService } from './../movies-list/movies.service';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { MovieFilters } from './movie-filters'
 import { FiltersRouteUtil } from './filters-route-util'

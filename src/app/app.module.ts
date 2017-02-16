@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { Routes, RouterModule, Route } from '@angular/router'
 
 import { AppComponent } from './app.component';
-import { MoviesComponent } from './movies/movies.component';
+import { MoviesListComponent } from './movies-list/movies-list.component';
 import { HighlightDirective } from './common/highlight.directive';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
@@ -13,7 +13,7 @@ import { MovieFiltersComponent } from './movie-filters/movie-filters.component';
 
 
 let route: Route[] = [
-  { path: '', component: MoviesComponent },
+  { path: '', component: MoviesListComponent },
   // { path: '', redirectTo: 'movies/', pathMatch: 'full' },
   { path: 'movie-details/:title', component: MovieDetailsComponent }
   // { path: '**', component: PageNotFoundComponent }
@@ -22,7 +22,7 @@ let route: Route[] = [
 @NgModule({
   declarations: [
     AppComponent,
-    MoviesComponent,
+    MoviesListComponent,
     HighlightDirective,
     MovieDetailsComponent,
     MovieCardComponent,

@@ -1,4 +1,4 @@
-import { Movie } from './../movies/movie';
+import { Movie } from './../movies-list/movie';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({

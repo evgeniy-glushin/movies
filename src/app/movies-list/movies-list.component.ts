@@ -47,11 +47,10 @@ export class MoviesListComponent implements OnInit {
           (x: Movie) => any(x.countries, countries) : (x: Movie) => !countries.length || any(x.countries, countries)
 
         this.service.getAll()
-          .then(data => this.movies = data.filter(x => titleFilter(x) &&
-            ratingFilter(x) &&
-            lengthFilter(x) &&
-            genresFilter(x) &&
-            countriesFilter(x)))
+          .then(data => this.movies = _.chain(data)
+            .filter(x => titleFilter(x) && ratingFilter(x) && lengthFilter(x) && genresFilter(x) && countriesFilter(x))
+            .orderBy('title')
+            .value())
       });
   }
 

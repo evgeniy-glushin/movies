@@ -27,16 +27,17 @@ export class MovieFiltersComponent implements OnInit {
       })
 
     this.service.uniqueCountries()
-      .then(x => this.countries = x)
+      .then(x => this.countries = x.sort())
 
     this.service.uniqueGenres()
-      .then(x => this.genres = x)
+      .then(x => this.genres = x.sort())
   }
 
   private removeGenre(genre: string) {
     if (this.filters.genres)
       _.remove(this.filters.genres, x => x == genre)
     this.genres.push(genre)
+    this.genres.sort()
     this.onFilterChanged.emit(this.filters)
   }
 
@@ -44,6 +45,7 @@ export class MovieFiltersComponent implements OnInit {
     if (this.filters.countries)
       _.remove(this.filters.countries, x => x == country)
     this.countries.push(country)
+    this.countries.sort()
     this.onFilterChanged.emit(this.filters)
   }
 
